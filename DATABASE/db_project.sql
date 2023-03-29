@@ -1122,7 +1122,8 @@ INSERT INTO `ref_pic_group` (`pic_group_id`, `user_create`, `date_create`, `user
 (1, 'DBA', '2023-03-29 00:00:00', NULL, NULL, 'DEV', 'DEVELOPER'),
 (2, 'DBA', '2023-03-29 00:00:00', NULL, NULL, 'BA', 'BUSINESS ANALYST'),
 (3, 'DBA', '2023-03-29 00:00:00', NULL, NULL, 'SA', 'SYSTEM ANALYST'),
-(4, 'DBA', '2023-03-29 00:00:00', NULL, NULL, 'QA', 'QUALITY ASSURANCE');
+(4, 'DBA', '2023-03-29 00:00:00', NULL, NULL, 'QA', 'QUALITY ASSURANCE'),
+(5, 'DBA', '2023-03-29 00:00:00', NULL, NULL, 'PM', 'PROJECT MANAGER');
 
 -- --------------------------------------------------------
 
