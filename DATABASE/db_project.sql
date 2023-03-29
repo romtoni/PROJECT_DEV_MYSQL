@@ -6,7 +6,7 @@ use db_project;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 29, 2023 at 05:30 AM
+-- Generation Time: Mar 29, 2023 at 07:05 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.1.13
 
@@ -623,6 +623,109 @@ CREATE TABLE IF NOT EXISTS `his_user` (
   `email` varchar(100) DEFAULT NULL,
   `user_status` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`his_user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `log_approval`
+--
+
+DROP TABLE IF EXISTS `log_approval`;
+CREATE TABLE IF NOT EXISTS `log_approval` (
+  `log_approval_id` int NOT NULL AUTO_INCREMENT,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `log_approval_status` varchar(10) DEFAULT NULL,
+  `log_approval_description` varchar(4000) DEFAULT NULL,
+  `log_approval_user` varchar(20) DEFAULT NULL,
+  `log_approval_date` date DEFAULT NULL,
+  `entry_code` varchar(3) DEFAULT NULL,
+  `budget_id` int DEFAULT NULL,
+  `project_id` int DEFAULT NULL,
+  `budget_project_id` int DEFAULT NULL,
+  `cr_id` int DEFAULT NULL,
+  `bugfix_id` int DEFAULT NULL,
+  PRIMARY KEY (`log_approval_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `log_approval_file`
+--
+
+DROP TABLE IF EXISTS `log_approval_file`;
+CREATE TABLE IF NOT EXISTS `log_approval_file` (
+  `log_approval_file_id` int NOT NULL AUTO_INCREMENT,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `log_approval_id` int DEFAULT NULL,
+  `file_ext` varchar(3) DEFAULT NULL,
+  `storage_code` varchar(4) DEFAULT NULL,
+  `physical_file` varchar(4000) DEFAULT NULL,
+  `blob_file` blob,
+  `cloud_file` varchar(4000) DEFAULT NULL,
+  PRIMARY KEY (`log_approval_file_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `log_deployment`
+--
+
+DROP TABLE IF EXISTS `log_deployment`;
+CREATE TABLE IF NOT EXISTS `log_deployment` (
+  `log_deploy_id` int NOT NULL AUTO_INCREMENT,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `deploy_no` varchar(100) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `dp_version` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`log_deploy_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `log_hit`
+--
+
+DROP TABLE IF EXISTS `log_hit`;
+CREATE TABLE IF NOT EXISTS `log_hit` (
+  `hit_id` int NOT NULL AUTO_INCREMENT,
+  `user_create` varchar(20) NOT NULL DEFAULT 'GUEST',
+  `date_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ip_address` varchar(15) DEFAULT NULL,
+  `country` varchar(100) DEFAULT NULL,
+  `date_hit` datetime DEFAULT NULL,
+  PRIMARY KEY (`hit_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `log_user_login`
+--
+
+DROP TABLE IF EXISTS `log_user_login`;
+CREATE TABLE IF NOT EXISTS `log_user_login` (
+  `log_user_id` int NOT NULL AUTO_INCREMENT,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `ip_address` varchar(15) DEFAULT NULL,
+  `is_login` varchar(1) DEFAULT NULL,
+  `last_login` date DEFAULT NULL,
+  `is_logout` varchar(1) DEFAULT NULL,
+  `last_logout` date DEFAULT NULL,
+  `date_kicker` date DEFAULT NULL,
+  `user_id_kicker` int DEFAULT NULL,
+  `ip_address_kicker` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`log_user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 COMMIT;
 
