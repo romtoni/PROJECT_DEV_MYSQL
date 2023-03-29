@@ -6,9 +6,9 @@ use db_project;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 28, 2023 at 10:44 PM
+-- Generation Time: Mar 29, 2023 at 05:30 AM
 -- Server version: 8.0.31
--- PHP Version: 8.0.26
+-- PHP Version: 8.1.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,14 +33,14 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `app_api_access`;
 CREATE TABLE IF NOT EXISTS `app_api_access` (
   `access_id` int NOT NULL AUTO_INCREMENT,
-  `user_create` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `date_create` date NOT NULL,
-  `user_modify` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `date_modify` date NOT NULL,
-  `access_type_id` int NOT NULL,
-  `client_id` int NOT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `is_active` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `user_create` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `access_type_id` int DEFAULT NULL,
+  `client_id` int DEFAULT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `is_active` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`access_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -53,14 +53,14 @@ CREATE TABLE IF NOT EXISTS `app_api_access` (
 DROP TABLE IF EXISTS `app_api_access_detail`;
 CREATE TABLE IF NOT EXISTS `app_api_access_detail` (
   `access_detail_id` int NOT NULL AUTO_INCREMENT,
-  `user_create` varchar(20) NOT NULL,
-  `date_create` date NOT NULL,
-  `user_modify` varchar(20) NOT NULL,
-  `date_modify` date NOT NULL,
-  `access_id` int NOT NULL,
-  `ip_address` varchar(15) NOT NULL,
-  `ip_type` varchar(4) NOT NULL,
-  `is_active` varchar(1) NOT NULL,
+  `user_create` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `access_id` int DEFAULT NULL,
+  `ip_address` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ip_type` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `is_active` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`access_detail_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -73,14 +73,14 @@ CREATE TABLE IF NOT EXISTS `app_api_access_detail` (
 DROP TABLE IF EXISTS `app_api_access_type`;
 CREATE TABLE IF NOT EXISTS `app_api_access_type` (
   `access_type_id` int NOT NULL AUTO_INCREMENT,
-  `user_create` varchar(20) NOT NULL,
-  `date_create` date NOT NULL,
-  `user_modify` varchar(20) NOT NULL,
-  `date_modify` date NOT NULL,
-  `access_name` varchar(255) NOT NULL,
-  `valid_until` date NOT NULL,
-  `price` int NOT NULL,
-  `is_active` varchar(1) NOT NULL,
+  `user_create` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `access_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `valid_until` date DEFAULT NULL,
+  `price` int DEFAULT NULL,
+  `is_active` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`access_type_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -264,6 +264,365 @@ CREATE TABLE IF NOT EXISTS `app_user_profile` (
   `email` varchar(100) DEFAULT NULL,
   `user_id` int DEFAULT NULL,
   PRIMARY KEY (`profile_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_audit_trail`
+--
+
+DROP TABLE IF EXISTS `his_audit_trail`;
+CREATE TABLE IF NOT EXISTS `his_audit_trail` (
+  `audit_trail_number` int NOT NULL AUTO_INCREMENT,
+  `user_update` varchar(20) DEFAULT NULL,
+  `date_update` timestamp NULL DEFAULT NULL,
+  `table_name` varchar(30) DEFAULT NULL,
+  `old_value` longtext,
+  `new_value` longtext,
+  PRIMARY KEY (`audit_trail_number`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_budget`
+--
+
+DROP TABLE IF EXISTS `his_budget`;
+CREATE TABLE IF NOT EXISTS `his_budget` (
+  `his_budget_id` int NOT NULL AUTO_INCREMENT,
+  `budget_id` int DEFAULT NULL,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_delete` varchar(20) DEFAULT NULL,
+  `date_delete` date DEFAULT NULL,
+  `reason_delete` varchar(100) DEFAULT NULL,
+  `budget_description` varchar(4000) DEFAULT NULL,
+  `budget_center_id` int DEFAULT NULL,
+  `budget_account_id` int DEFAULT NULL,
+  `budget_year` varchar(4) DEFAULT NULL,
+  `budget_month` varchar(2) DEFAULT NULL,
+  `budget_amount` int DEFAULT NULL,
+  `budget_status` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`his_budget_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_bugfix`
+--
+
+DROP TABLE IF EXISTS `his_bugfix`;
+CREATE TABLE IF NOT EXISTS `his_bugfix` (
+  `his_bugfix_id` int NOT NULL AUTO_INCREMENT,
+  `bugfix_id` int DEFAULT NULL,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_delete` varchar(20) DEFAULT NULL,
+  `date_delete` date DEFAULT NULL,
+  `reason_delete` varchar(4000) DEFAULT NULL,
+  `bugfix_no` varchar(30) DEFAULT NULL,
+  `bugfix_name` varchar(255) DEFAULT NULL,
+  `bugfix_description` varchar(4000) DEFAULT NULL,
+  `bugfix_progress` int DEFAULT NULL,
+  `bugfix_status` varchar(10) DEFAULT NULL,
+  `plan_date_start` date DEFAULT NULL,
+  `plan_date_end` date DEFAULT NULL,
+  `plan_total_hours` int DEFAULT NULL,
+  `actual_date_start` date DEFAULT NULL,
+  `actual_date_end` date DEFAULT NULL,
+  `actual_date_hours` int DEFAULT NULL,
+  `priority_code` varchar(3) DEFAULT NULL,
+  `is_pir` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`his_bugfix_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_bugfix_detail`
+--
+
+DROP TABLE IF EXISTS `his_bugfix_detail`;
+CREATE TABLE IF NOT EXISTS `his_bugfix_detail` (
+  `his_bugfix_detail_id` int NOT NULL AUTO_INCREMENT,
+  `bugfix_detail_id` int DEFAULT NULL,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_delete` varchar(20) DEFAULT NULL,
+  `date_delete` date DEFAULT NULL,
+  `reason_delete` varchar(4000) DEFAULT NULL,
+  `bugfix_id` int DEFAULT NULL,
+  `application_id` int DEFAULT NULL,
+  `vendor_id` int DEFAULT NULL,
+  `pic_id` int DEFAULT NULL,
+  `task_id` int DEFAULT NULL,
+  `task_detail` varchar(4000) DEFAULT NULL,
+  `task_progress` int DEFAULT NULL,
+  `plan_date_start` date DEFAULT NULL,
+  `plan_date_end` date DEFAULT NULL,
+  `plan_total_hours` int DEFAULT NULL,
+  `actual_date_start` date DEFAULT NULL,
+  `actual_date_end` date DEFAULT NULL,
+  `actual_total_hours` int DEFAULT NULL,
+  `project_id` int DEFAULT NULL,
+  `cr_id` int DEFAULT NULL,
+  PRIMARY KEY (`his_bugfix_detail_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_cr`
+--
+
+DROP TABLE IF EXISTS `his_cr`;
+CREATE TABLE IF NOT EXISTS `his_cr` (
+  `his_cr_id` int NOT NULL AUTO_INCREMENT,
+  `cr_id` int DEFAULT NULL,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_delete` varchar(20) DEFAULT NULL,
+  `date_delete` date DEFAULT NULL,
+  `reason_delete` varchar(4000) DEFAULT NULL,
+  `cr_no` varchar(30) DEFAULT NULL,
+  `cr_name` varchar(255) DEFAULT NULL,
+  `cr_description` varchar(4000) DEFAULT NULL,
+  `cr_progress` int DEFAULT NULL,
+  `cr_status` varchar(10) DEFAULT NULL,
+  `plan_date_start` date DEFAULT NULL,
+  `plan_date_end` date DEFAULT NULL,
+  `plan_total_hours` int DEFAULT NULL,
+  `actual_date_start` date DEFAULT NULL,
+  `actual_date_end` date DEFAULT NULL,
+  `actual_date_hours` int DEFAULT NULL,
+  `priority_code` varchar(3) DEFAULT NULL,
+  `is_pir` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`his_cr_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_cr_detail`
+--
+
+DROP TABLE IF EXISTS `his_cr_detail`;
+CREATE TABLE IF NOT EXISTS `his_cr_detail` (
+  `his_cr_detail_id` int NOT NULL AUTO_INCREMENT,
+  `cr_detail_id` int DEFAULT NULL,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_delete` varchar(20) DEFAULT NULL,
+  `date_delete` date DEFAULT NULL,
+  `reason_delete` varchar(4000) DEFAULT NULL,
+  `cr_id` int DEFAULT NULL,
+  `application_id` int DEFAULT NULL,
+  `vendor_id` int DEFAULT NULL,
+  `pic_id` int DEFAULT NULL,
+  `task_id` int DEFAULT NULL,
+  `task_detail` varchar(4000) DEFAULT NULL,
+  `task_progress` int DEFAULT NULL,
+  `plan_date_start` date DEFAULT NULL,
+  `plan_date_end` date DEFAULT NULL,
+  `plan_total_hours` int DEFAULT NULL,
+  `actual_date_start` date DEFAULT NULL,
+  `actual_date_end` date DEFAULT NULL,
+  `actual_total_hours` int DEFAULT NULL,
+  `project_id` int DEFAULT NULL,
+  PRIMARY KEY (`his_cr_detail_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_project`
+--
+
+DROP TABLE IF EXISTS `his_project`;
+CREATE TABLE IF NOT EXISTS `his_project` (
+  `his_project_id` int NOT NULL AUTO_INCREMENT,
+  `project_id` int DEFAULT NULL,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_delete` varchar(20) DEFAULT NULL,
+  `date_delete` date DEFAULT NULL,
+  `reason_delete` varchar(4000) DEFAULT NULL,
+  `project_no` varchar(30) DEFAULT NULL,
+  `project_name` varchar(255) DEFAULT NULL,
+  `project_description` varchar(4000) DEFAULT NULL,
+  `project_progress` int DEFAULT NULL,
+  `project_status` varchar(10) DEFAULT NULL,
+  `plan_date_start` date DEFAULT NULL,
+  `plan_date_end` date DEFAULT NULL,
+  `plan_total_hours` int DEFAULT NULL,
+  `actual_date_start` date DEFAULT NULL,
+  `actual_date_end` date DEFAULT NULL,
+  `actual_date_hours` int DEFAULT NULL,
+  `priority_code` varchar(3) DEFAULT NULL,
+  PRIMARY KEY (`his_project_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_project_budget`
+--
+
+DROP TABLE IF EXISTS `his_project_budget`;
+CREATE TABLE IF NOT EXISTS `his_project_budget` (
+  `his_project_budget_id` int NOT NULL AUTO_INCREMENT,
+  `project_budget_id` int DEFAULT NULL,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_delete` varchar(20) DEFAULT NULL,
+  `date_delete` date DEFAULT NULL,
+  `reason_delete` varchar(4000) DEFAULT NULL,
+  `project_id` int DEFAULT NULL,
+  PRIMARY KEY (`his_project_budget_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_project_budget_detail`
+--
+
+DROP TABLE IF EXISTS `his_project_budget_detail`;
+CREATE TABLE IF NOT EXISTS `his_project_budget_detail` (
+  `his_project_budget_detail_id` int NOT NULL AUTO_INCREMENT,
+  `project_budget_detail_id` int DEFAULT NULL,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_delete` varchar(20) DEFAULT NULL,
+  `date_delete` date DEFAULT NULL,
+  `reason_delete` varchar(4000) DEFAULT NULL,
+  `project_budget_id` int DEFAULT NULL,
+  `budget_id` int DEFAULT NULL,
+  `plan_amount` int DEFAULT NULL,
+  `actual_amount` int DEFAULT NULL,
+  PRIMARY KEY (`his_project_budget_detail_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_project_detail`
+--
+
+DROP TABLE IF EXISTS `his_project_detail`;
+CREATE TABLE IF NOT EXISTS `his_project_detail` (
+  `his_project_detail_id` int NOT NULL AUTO_INCREMENT,
+  `project_detail_id` int DEFAULT NULL,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_delete` varchar(20) DEFAULT NULL,
+  `date_delete` date DEFAULT NULL,
+  `reason_delete` varchar(4000) DEFAULT NULL,
+  `project_id` int DEFAULT NULL,
+  `application_id` int DEFAULT NULL,
+  `vendor_id` int DEFAULT NULL,
+  `pic_id` int DEFAULT NULL,
+  `task_id` int DEFAULT NULL,
+  `task_detail` varchar(4000) DEFAULT NULL,
+  `task_progress` int DEFAULT NULL,
+  `plan_date_start` date DEFAULT NULL,
+  `plan_date_end` date DEFAULT NULL,
+  `plan_total_hours` int DEFAULT NULL,
+  `actual_date_start` date DEFAULT NULL,
+  `actual_date_end` date DEFAULT NULL,
+  `actual_total_hours` int DEFAULT NULL,
+  PRIMARY KEY (`his_project_detail_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_role`
+--
+
+DROP TABLE IF EXISTS `his_role`;
+CREATE TABLE IF NOT EXISTS `his_role` (
+  `his_role_id` int NOT NULL AUTO_INCREMENT,
+  `role_id` int DEFAULT NULL,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_delete` varchar(20) DEFAULT NULL,
+  `date_delete` date DEFAULT NULL,
+  `reason_delete` varchar(4000) DEFAULT NULL,
+  `role_name` varchar(50) DEFAULT NULL,
+  `role_status` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`his_role_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_role_menu`
+--
+
+DROP TABLE IF EXISTS `his_role_menu`;
+CREATE TABLE IF NOT EXISTS `his_role_menu` (
+  `his_role_menu_id` int NOT NULL AUTO_INCREMENT,
+  `role_menu_id` int DEFAULT NULL,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_delete` varchar(20) DEFAULT NULL,
+  `date_delete` date DEFAULT NULL,
+  `reason_delete` varchar(4000) DEFAULT NULL,
+  `role_id` int DEFAULT NULL,
+  `menu_id` int DEFAULT NULL,
+  `is_select` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`his_role_menu_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `his_user`
+--
+
+DROP TABLE IF EXISTS `his_user`;
+CREATE TABLE IF NOT EXISTS `his_user` (
+  `his_user_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `user_create` varchar(20) DEFAULT NULL,
+  `date_create` date DEFAULT NULL,
+  `user_modify` varchar(20) DEFAULT NULL,
+  `date_modify` date DEFAULT NULL,
+  `user_delete` varchar(20) DEFAULT NULL,
+  `date_delete` date DEFAULT NULL,
+  `reason_delete` varchar(4000) DEFAULT NULL,
+  `user_name` varchar(20) DEFAULT NULL,
+  `password` varchar(20) DEFAULT NULL,
+  `role_id` int DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `user_status` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`his_user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 COMMIT;
 

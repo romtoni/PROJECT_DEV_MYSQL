@@ -1,2 +1,5 @@
+12:31 29/03/2023
+- Added some tables history
+
 5:53 29/03/2023
 - Initial version
