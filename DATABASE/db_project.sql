@@ -1070,10 +1070,10 @@ CREATE TABLE IF NOT EXISTS `ref_lookup` (
 --
 
 INSERT INTO `ref_lookup` (`lookup_id`, `user_create`, `date_create`, `user_modify`, `date_modify`, `lookup_type`, `lookup_code`, `lookup_name`, `lookup_description`) VALUES
-(1, 'DBA', '2023-03-29 00:00:00', NULL, NULL, 'ENTRY_CODE', 'BUD', 'BUDGET', 'ENTRY CODE UNTUK BUDGET');
+(1, 'DBA', '2023-03-29 00:00:00', NULL, NULL, 'ENTRY_CODE', 'BUD', 'BUDGET', 'ENTRY CODE UNTUK BUDGET'),
 (2, 'DBA', '2023-03-29 00:00:00', NULL, NULL, 'ENTRY_CODE', 'PRJ', 'PROJECT', 'ENTRY CODE UNTUK PROJECT'),
 (3, 'DBA', '2023-03-29 00:00:00', NULL, NULL, 'ENTRY_CODE', 'CR', 'CHANGE REQUEST', 'ENTRY CODE UNTUK CHANGE REQUEST'),
-(4, 'DBA', '2023-03-29 00:00:00', NULL, NULL, 'ENTRY_CODE', 'BFX', 'BUGFIX', 'ENTRY CODE UNTUK BUGFIX'),
+(4, 'DBA', '2023-03-29 00:00:00', NULL, NULL, 'ENTRY_CODE', 'BFX', 'BUGFIX', 'ENTRY CODE UNTUK BUGFIX');
 
 -- --------------------------------------------------------
 
