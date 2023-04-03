@@ -1,2 +1,2 @@
 PROJECT_DEV_MYSQL
-v0.0.6 r1
+v0.0.6 r2
