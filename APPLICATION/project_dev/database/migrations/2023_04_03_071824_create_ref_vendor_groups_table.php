@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ref_vendor_group', function (Blueprint $table) {
-            $table->integer('vendor_group_id')->autoIncrement();
+            $table->increments('vendor_group_id');
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
             $table->string('user_modify', 20)->default(null);
@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('vendor_group_name', 10)->default(null);
 
             // Indexes
-            $table->primary(['vendor_group_id']);
         });
     }
 

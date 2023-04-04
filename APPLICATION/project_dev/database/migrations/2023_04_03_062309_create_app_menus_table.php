@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('app_menu', function (Blueprint $table) {
-            $table->integer('menu_id')->autoIncrement();
+            $table->increments('menu_id');
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
             $table->string('user_modify', 20)->default(null);
@@ -21,12 +21,11 @@ return new class extends Migration
             $table->string('link', 150)->default(null);
             $table->integer('sort_no')->default(null);
             $table->integer('parent_menu_id')->default(null);
-            $table->string('is_crud', 1)->default(N);
-            $table->string('is_new', 1)->default(Y);
-            $table->string('menu_status', 1)->default(A);
+            $table->string('is_crud', 1)->default('N');
+            $table->string('is_new', 1)->default('Y');
+            $table->string('menu_status', 1)->default('A');
 
             // Indexes
-            $table->primary(['menu_id']);
         });
     }
 

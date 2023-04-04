@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('his_role_menu', function (Blueprint $table) {
-            $table->integer('his_role_menu_id')->autoIncrement();
+            $table->increments('his_role_menu_id');
             $table->integer('role_menu_id')->default(null);
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('is_select', 1)->default(null);
 
             // Indexes
-            $table->primary(['his_role_menu_id']);
         });
     }
 

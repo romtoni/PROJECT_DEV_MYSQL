@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('app_user_activation', function (Blueprint $table) {
-            $table->integer('activation_id')->autoIncrement();
+            $table->increments('activation_id');
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
             $table->string('user_modify', 20)->default(null);
@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('activation_rec_desc', 4000)->default(null);
 
             // Indexes
-            $table->primary(['activation_id']);
         });
     }
 

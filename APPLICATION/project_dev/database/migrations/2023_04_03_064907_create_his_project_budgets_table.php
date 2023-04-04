@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('his_project_budget', function (Blueprint $table) {
-            $table->integer('his_project_budget_id')->autoIncrement();
+            $table->increments('his_project_budget_id');
             $table->integer('project_budget_id')->default(null);
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
@@ -24,7 +24,6 @@ return new class extends Migration
             $table->integer('project_id')->default(null);
 
             // Indexes
-            $table->primary(['his_project_budget_id']);
 
         });
     }

@@ -12,16 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('app_role', function (Blueprint $table) {
-            $table->integer('role_id')->autoIncrement();
+            $table->increments('role_id');
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
             $table->string('user_modify', 20)->default(null);
             $table->dateTime('date_modify')->default(null);
             $table->string('role_name', 50)->default(null);
-            $table->string('role_status', 1)->default(A);
+            $table->string('role_status', 1)->default('A');
 
             // Indexes
-            $table->primary(['role_id']);
         });
     }
 

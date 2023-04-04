@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mst_cr', function (Blueprint $table) {
-            $table->integer('cr_id')->autoIncrement();
+            $table->increments('cr_id');
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
             $table->string('user_modify', 20)->default(null);
@@ -35,7 +35,6 @@ return new class extends Migration
             $table->string('is_pir', 1)->default(null);
 
             // Indexes
-            $table->primary(['cr_id']);
         });
     }
 

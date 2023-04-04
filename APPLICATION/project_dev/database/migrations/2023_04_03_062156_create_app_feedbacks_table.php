@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('app_feedback', function (Blueprint $table) {
-            $table->integer('feedback_id')->autoIncrement();
+            $table->increments('feedback_id');
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
             $table->string('sent_name', 100)->default(null);
@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('ip_address', 15)->default(null);
 
             // Indexes
-            $table->primary(['feedback_id']);
         });
     }
 

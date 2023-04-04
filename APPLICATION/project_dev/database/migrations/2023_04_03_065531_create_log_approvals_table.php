@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('log_approval', function (Blueprint $table) {
-            $table->integer('log_approval_id')->autoIncrement();
+            $table->increments('log_approval_id');
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
             $table->string('log_approval_status', 10)->default(null);
@@ -27,7 +27,6 @@ return new class extends Migration
             $table->integer('bugfix_id')->default(null);
 
             // Indexes
-            $table->primary(['log_approval_id']);
         });
     }
 

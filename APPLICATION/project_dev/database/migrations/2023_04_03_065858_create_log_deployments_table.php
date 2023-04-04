@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('log_deployment', function (Blueprint $table) {
-            $table->integer('log_deploy_id')->autoIncrement();
+            $table->increments('log_deploy_id');
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
             $table->string('deploy_no', 100)->default(null);
@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('dp_version', 10)->default(null);
 
             // Indexes
-            $table->primary(['log_deploy_id']);
         });
     }
 

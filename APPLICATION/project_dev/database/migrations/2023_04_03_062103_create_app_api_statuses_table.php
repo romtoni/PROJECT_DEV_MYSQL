@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('app_api_status', function (Blueprint $table) {
-            $table->integer('api_status_id')->autoIncrement();
+            $table->increments('api_status_id');
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
             $table->string('user_modify', 20)->default(null);
@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('api_status_description', 50)->default(null);
 
             // Indexes
-            $table->primary(['api_status_id']);
         });
     }
 

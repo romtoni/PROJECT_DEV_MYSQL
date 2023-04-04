@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('app_api_access_type', function (Blueprint $table) {
-            $table->integer('access_type_id')->autoIncrement();
+            $table->increments('access_type_id');
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
             $table->string('user_modify', 20)->default(null);
@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('is_active', 1)->default(null);
 
             // Indexes
-            $table->primary(['access_type_id']);
         });
     }
 

@@ -1,3 +1,6 @@
+11:24 04/04/2023
+- Fix migration tables to Laravel 10 version
+
 14:33 03/04/2023
 - Make migration tables
 

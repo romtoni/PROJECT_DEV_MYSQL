@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('his_audit_trail', function (Blueprint $table) {
-            $table->integer('audit_trail_number')->autoIncrement();
+            $table->increments('audit_trail_number');
             $table->string('user_update', 20)->default(null);
             $table->timestamp('date_update')->nullable()->default(null);
             $table->string('table_name', 30)->default(null);
-            $table->UNKNOWN_DATA_TYPE('old_value');
-            $table->UNKNOWN_DATA_TYPE('new_value');
+            $table->longText('old_value');
+            $table->longText('new_value');
 
             // Indexes
-            $table->primary(['audit_trail_number']);
         });
     }
 

@@ -12,14 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tmp_user_login_attempt', function (Blueprint $table) {
-            $table->integer('login_attempt_id')->autoIncrement();
+            $table->increments('login_attempt_id');
             $table->dateTime('login_attempt_date')->default(null);
             $table->string('user_name', 20)->default(null);
             $table->string('password', 20)->default(null);
             $table->string('ip_address', 15)->default(null);
 
             // Indexes
-            $table->primary(['login_attempt_id']);
         });
     }
 

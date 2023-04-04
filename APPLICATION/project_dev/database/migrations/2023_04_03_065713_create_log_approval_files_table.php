@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('log_approval_file', function (Blueprint $table) {
-            $table->integer('log_approval_file_id')->autoIncrement();
+            $table->increments('log_approval_file_id');
             $table->string('user_create', 20)->default(null);
             $table->dateTime('date_create')->default(null);
             $table->integer('log_approval_id')->default(null);
@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('cloud_file', 4000)->default(null);
 
             // Indexes
-            $table->primary(['log_approval_file_id']);
         });
     }
 

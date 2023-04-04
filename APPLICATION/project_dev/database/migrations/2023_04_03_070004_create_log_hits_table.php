@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('log_hit', function (Blueprint $table) {
-            $table->integer('hit_id')->autoIncrement();
-            $table->string('user_create', 20)->default(GUEST);
-            $table->dateTime('date_create')->default(current_timestamp);
+            $table->increments('hit_id');
+            $table->string('user_create', 20)->default('GUEST');
+            $table->dateTime('date_create')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('ip_address', 15)->default(null);
             $table->string('country', 100)->default(null);
             $table->dateTime('date_hit')->default(null);
 
             // Indexes
-            $table->primary(['hit_id']);
         });
     }
 
