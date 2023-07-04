@@ -1,3 +1,6 @@
+10:49 04/07/2023
+- Install template
+
 11:24 04/04/2023
 - Fix migration tables to Laravel 10 version
 
